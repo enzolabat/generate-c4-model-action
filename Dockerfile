@@ -1,6 +1,8 @@
 FROM adoptopenjdk:11-jre-hotspot
 
-RUN apt-get update && apt-get install -y unzip wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y unzip wget graphviz \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir structurizr-cli \
     && cd structurizr-cli \
