@@ -1,6 +1,6 @@
 # Generate C4 Model
 
-This action takes your [C4 model](https://c4model.com) system architecture in [Structurizr DSL](https://github.com/structurizr/dsl) format and generates [PlantUML](https://plantuml.com/) .png images for it.
+This action takes your [C4 model](https://c4model.com) system architecture in [Structurizr DSL](https://github.com/structurizr/dsl) format, generates [PlantUML](https://plantuml.com/) .png images and optionally export to [another format](https://github.com/structurizr/cli/blob/v1.28.0/docs/export.md).
 
 ## Inputs
 
@@ -12,6 +12,10 @@ This action takes your [C4 model](https://c4model.com) system architecture in [S
 
 **Required** The path to the directory in which to place the C4 model artifacts. Default `.github/actions/dist`
 
+### `export-model-to-format`
+
+Export structirizr model into [another format](https://github.com/structurizr/cli/blob/v1.28.0/docs/export.md). Default `none`
+
 ## Example usage
 
 ```
@@ -20,6 +24,7 @@ This action takes your [C4 model](https://c4model.com) system architecture in [S
   with:
     source-path: docs/c4-model.dsl
     target-path: .github/actions/dist/images/c4
+    export-model-to-format: dot
 ```
 
 ## Mentions

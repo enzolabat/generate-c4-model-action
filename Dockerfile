@@ -6,7 +6,7 @@ RUN apt-get update \
 
 RUN mkdir structurizr-cli \
     && cd structurizr-cli \
-    && wget -O structurizr-cli.zip https://github.com/structurizr/cli/releases/download/v1.27.0/structurizr-cli-1.27.0.zip \
+    && wget -O structurizr-cli.zip https://github.com/structurizr/cli/releases/download/v1.28.0/structurizr-cli-1.28.0.zip \
     && unzip structurizr-cli.zip \
     && rm structurizr-cli.zip
 
