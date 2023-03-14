@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 echo "Generating C4 model"
 
@@ -8,6 +8,7 @@ source="$GITHUB_WORKSPACE/$1"
 source_dir="$(dirname "$source")"
 tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
 target_dir="$GITHUB_WORKSPACE/$2"
+export_model_to_format="$3"
 
 if [ ! -f "$source" ]; then
     echo "Structurizr DSL file '$source' not found"  >&2
@@ -16,7 +17,8 @@ fi
 
 echo "[params]
 source: $source
-target dir: $target_dir"
+target dir: $target_dir
+export to format: $export_model_to_format"
 
 echo "Exporting Structurizr DSL to PlantUML format"
 
@@ -49,6 +51,27 @@ mkdir -p "$target_dir"
 mv "$tmp_dir"/*.png "$target_dir"
 
 ls -la "$target_dir"
+
+
+if [[ -n "$export_model_to_format" -a "$export_model_to_format" != "none" ]]
+    echo "Exporting Structurizr DSL to $export_model_to_format format"
+
+    /structurizr-cli/structurizr.sh export -w "$source" -f "$export_model_to_format"
+
+    if [ $? -ne 0 ]; then
+        echo "An error occurred when attempting to export to $export_model_to_format format" >&2
+        exit $?
+    fi
+
+    ls "$source_dir/*.$export_model_to_format" >/dev/null
+
+    if [ $? -ne 0 ]; then
+        echo "Did not generate any $export_model_to_format files" >&2
+        exit $?
+    fi
+else
+    echo "No additional export requested"
+fi
 
 echo "Finished"
 

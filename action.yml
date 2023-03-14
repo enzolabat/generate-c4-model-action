@@ -9,6 +9,10 @@ inputs:
     description: "The path to the directory in which to place the C4 model artifacts"
     required: true
     default: .github/actions/dist
+  export-model-to-format:
+    description: "Export structirizr model into another format"
+    required: false
+    default: "none"
 
 runs:
   using: "docker"
@@ -16,3 +20,4 @@ runs:
   args:
     - ${{ inputs.source-path }}
     - ${{ inputs.target-path }}
+    - ${{ inputs.export-model-to-format }}
