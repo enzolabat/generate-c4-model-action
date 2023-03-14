@@ -53,7 +53,7 @@ mv "$tmp_dir"/*.png "$target_dir"
 ls -la "$target_dir"
 
 
-if [[ -n "$export_model_to_format" -a "$export_model_to_format" != "none" ]]
+if [ -n "$export_model_to_format" -a "$export_model_to_format" != "none" ]; then
     echo "Exporting Structurizr DSL to $export_model_to_format format"
 
     /structurizr-cli/structurizr.sh export -w "$source" -f "$export_model_to_format"
