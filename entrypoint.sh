@@ -63,7 +63,7 @@ if [ -n "$export_model_to_format" -a "$export_model_to_format" != "none" ]; then
         exit $?
     fi
 
-    ls "$source_dir/*.$export_model_to_format" >/dev/null
+    ls "$source_dir"/*."$export_model_to_format" >/dev/null
 
     if [ $? -ne 0 ]; then
         echo "Did not generate any $export_model_to_format files" >&2
