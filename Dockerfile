@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jre-hotspot
+FROM eclipse-temurin:17-jdk-jammy
 
 RUN apt-get update \
     && apt-get install -y unzip wget graphviz \
@@ -10,7 +10,7 @@ RUN mkdir structurizr-cli \
     && unzip structurizr-cli.zip \
     && rm structurizr-cli.zip
 
-RUN wget -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2023.2/plantuml.jar
+RUN wget -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2024.3/plantuml.jar
 
 COPY entrypoint.sh /entrypoint.sh
 
